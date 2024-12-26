@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Story } from "@/lib/types";
 import StoryNarrator from '@/app/components/StoryNarrator';
+import ClientLink from '@/app/components/ClientLink';
 
 export default async function StoryPage({
   params,
@@ -45,12 +46,9 @@ export default async function StoryPage({
             </span>
             <h1 className="text-4xl font-bold text-gray-900">{story.title}</h1>
           </div>
-          <Link
-            href={`/story-levels/${story.level_id}`}
-            className="px-4 py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600"
-          >
+          <ClientLink href={`/story-levels/${story.level_id}`}>
             Back to Level
-          </Link>
+          </ClientLink>
         </div>
 
         {story.images.length > 0 && (

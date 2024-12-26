@@ -224,4 +224,11 @@ export default function StoryNarrator({ html }: StoryNarratorProps) {
       />
     </div>
   );
-} 
+} // StoryNarrator component
+
+// Add event listener for browser back button
+if (typeof window !== 'undefined') {
+  window.addEventListener('popstate', () => {
+    speechSynthesis.cancel();
+  });
+}
