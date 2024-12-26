@@ -4,12 +4,14 @@ import Link from "next/link";
 import Image from "next/image";
 import { Story } from "@/lib/types";
 import StoryNarrator from '@/app/components/StoryNarrator';
+import { Metadata } from 'next'
 
 export default async function StoryPage({
   params,
+  searchParams,
 }: {
   params: { id: string };
-  searchParams?: { [key: string]: string | string[] | undefined };
+  searchParams: { [key: string]: string | string[] | undefined };
 }) {
   const supabase = await createClient();
 
