@@ -9,6 +9,7 @@ export default async function StoryPage({
   params,
 }: {
   params: { id: string };
+  searchParams?: { [key: string]: string | string[] | undefined };
 }) {
   const supabase = await createClient();
 
