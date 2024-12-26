@@ -132,11 +132,9 @@ export default function StoryNarrator({ html }: StoryNarratorProps) {
             const span = document.createElement('span');
             span.textContent = word;
             span.style.cursor = 'pointer';
-            // Add a distinctive class for clickable words
             span.className = `clickable-word ${
               wordIndex === currentWordIndex ? 'bg-yellow-200' : ''
             } transition-colors duration-200`;
-            // Store the word and index as data attributes
             span.dataset.word = word;
             span.dataset.index = wordIndex.toString();
             fragment.appendChild(span);
@@ -159,12 +157,12 @@ export default function StoryNarrator({ html }: StoryNarratorProps) {
     };
 
     const processedContent = highlightWords(tempDiv);
-    return { __html: processedContent.innerHTML };
+    return { __html: (processedContent as HTMLElement).innerHTML };
   };
 
   // Add click handler using useEffect
   useEffect(() => {
-    const handleWordClick = (event: MouseEvent) => {
+    const handleWordClick = (event: Event) => {
       const target = event.target as HTMLElement;
       if (target.classList.contains('clickable-word')) {
         const word = target.dataset.word;
@@ -179,13 +177,13 @@ export default function StoryNarrator({ html }: StoryNarratorProps) {
     // Add click listener to the container
     const container = document.querySelector('.prose');
     if (container) {
-      container.addEventListener('click', handleWordClick);
+      container.addEventListener('click', handleWordClick as EventListener);
     }
 
     return () => {
       // Clean up listener
       if (container) {
-        container.removeEventListener('click', handleWordClick);
+        container.removeEventListener('click', handleWordClick as EventListener);
       }
     };
   }, []);

@@ -122,7 +122,7 @@ export default function StoryList({
                 <td className="px-6 py-4 border-b">{story.id}</td>
                 <td className="px-6 py-4 border-b">{story.title}</td>
                 <td className="px-6 py-4 border-b">
-                  Level {story.level.level_number}
+                  {story.level ? `Level ${story.level.level_number}` : 'No level assigned'}
                 </td>
                 <td className="px-6 py-4 border-b">
                   {story.images.length > 0 ? (

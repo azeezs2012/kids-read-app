@@ -21,8 +21,10 @@ function getFirstImageUrl(content: string): string | null {
 export default async function StoryLevelPage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
+  const { id } = await params;
+
   const supabase = await createClient();
 
   const {
@@ -37,14 +39,14 @@ export default async function StoryLevelPage({
   const { data: level } = await supabase
     .from('story_levels')
     .select('*')
-    .eq('id', params.id)
+    .eq('id', id)
     .single();
 
   // Fetch stories for this level
   const { data: stories } = await supabase
     .from('stories')
     .select('*')
-    .eq('level_id', params.id)
+    .eq('level_id', id)
     .order('created_at');
 
   if (!level) {

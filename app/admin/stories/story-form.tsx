@@ -34,7 +34,8 @@ export default function StoryForm({
     try {
       const newImages = [...formData.images];
       
-      for (const file of files) {
+      const fileArray = Array.from(files);
+      for (const file of fileArray) {
         const publicUrl = await uploadImage(file);
         newImages.push(publicUrl);
       }
